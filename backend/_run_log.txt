@@ -1,0 +1,29 @@
+[0/6] 已加载登录态: pdd_login_state.json（12个cookie）
+[1/6] 导入商品: https://mobile.yangkeduo.com/goods2.html?ps=RGjYVJPJHt
+      -> 2条新款男士平角内裤透气低腰锦纶冰丝四角干爽弹性舒适吸湿排汗 | 价格 22.7 | 6张图 | 126个SKU
+[2/6] 分析商品 + 图片分类
+      -> facts=Facts(material='锦纶', style='平角内裤', gender='男', season='', features=['透气', '低腰', '冰丝', '四角', '干爽', '弹性舒适', '吸湿排汗', '2条装']) | KEEP图 0/6 | 推荐场景 ['健身房', '力量训练区', '晨间居家', '更衣室', '运动后休息']
+[3/6] 生成候选关键词
+      -> 15 个候选关键词（主观打分，非真实热度统计）
+[4/6] 生成文案
+      -> 新标题: 男士平角内裤低腰锦纶冰丝2条装
+[5/6] 生成AI场景图
+      接口限流/连接问题，6秒后重试（第1/5次）：Connection error.
+      接口限流/连接问题，12秒后重试（第2/5次）：Connection error.
+      场景「坐姿卧推凳上，双手各持一只哑铃做哑铃卧推」生成失败，跳过，不影响其它场景：Error code: 400 - {'error': {'message': '`/v1/images/edits` only supports Grok image models. (request id: 20260815141859339150243gkdS2dT3)', 'type': 'apimart_error'}}
+      场景「站在深蹲架旁边，侧身面对器械，一只手扶着深蹲架的立柱调整挂钩高度，低头看着器械，另一只手自然垂放」生成失败，跳过，不影响其它场景：Error code: 400 - {'error': {'message': '`/v1/images/edits` only supports Grok image models. (request id: 20260815141901961943784Huc7b5HE)', 'type': 'apimart_error'}}
+      场景「站在龙门架旁，一只手搭在器械立柱上，另一只手自然垂放，稍作休息的站姿」生成失败，跳过，不影响其它场景：Error code: 400 - {'error': {'message': '`/v1/images/edits` only supports Grok image models. (request id: 202608151419031585316170GF5IANa)', 'type': 'apimart_error'}}
+      场景「单杠下，双手悬垂做引体向上，背部肌肉发力绷紧」生成失败，跳过，不影响其它场景：Error code: 400 - {'error': {'message': '`/v1/images/edits` only supports Grok image models. (request id: 202608151419044373067042E1HO19C)', 'type': 'apimart_error'}}
+      场景「跑步机旁站立，单脚踩在跑步机踏板上系鞋带，额头带汗」生成失败，跳过，不影响其它场景：Error code: 400 - {'error': {'message': '`/v1/images/edits` only supports Grok image models. (request id: 2026081514190660183585CJ157Kj8)', 'type': 'apimart_error'}}
+Traceback (most recent call last):
+  File "D:\WEAPP\Claude Project\PDD-project\backend\run_pipeline.py", line 22, in <module>
+    main()
+    ~~~~^^
+  File "D:\WEAPP\Claude Project\PDD-project\backend\run_pipeline.py", line 18, in main
+    run_pipeline(url, settings)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\WEAPP\Claude Project\PDD-project\backend\pdd_agent\pipeline.py", line 44, in run_pipeline
+    generated_images = creative.generate_scene_images(product, analysis, settings, output_dir)
+  File "D:\WEAPP\Claude Project\PDD-project\backend\pdd_agent\creative.py", line 234, in generate_scene_images
+    raise RuntimeError("这一轮所有场景图都生成失败了，看上面每条具体报错原因，不是走到组装那一步就会有预览。")
+RuntimeError: 这一轮所有场景图都生成失败了，看上面每条具体报错原因，不是走到组装那一步就会有预览。

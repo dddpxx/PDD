@@ -1,0 +1,442 @@
+人物六视图
+1. 正面 FRONT_000
+
+HIGHEST VIEW PRIORITY:
+(exact centered frontal view:1.40),
+generate only a strict frontal view,
+do not generate a three-quarter, side or rear view.
+
+TARGET VIEW: FRONT_000
+
+BODY YAW: exactly 0 degrees,
+HEAD YAW: exactly 0 degrees,
+SHOULDER YAW: exactly 0 degrees,
+PELVIS YAW: exactly 0 degrees,
+
+the camera is positioned directly in front of the model,
+
+the visible lower half of the face,
+nose,
+mouth,
+jawline,
+chin,
+neck,
+sternum,
+chest,
+abdomen,
+navel,
+pelvis,
+hips,
+thighs
+and kneecaps face directly toward the camera,
+
+the head,
+neck,
+sternum,
+navel
+and center of the pelvis align with the vertical centerline,
+
+both shoulders are equally visible,
+both sides of the chest are equally visible,
+both sides of the abdomen are equally visible,
+both hips are equally visible,
+both thighs are equally visible,
+both kneecaps are equally visible at the lower frame boundary,
+
+shoulders and pelvis remain parallel to the image plane,
+
+strict fixed crop from nasal-bridge height to kneecap height,
+
+the upper frame boundary cuts through nasal-bridge level,
+the lower frame boundary cuts through both kneecaps,
+
+forehead,
+hairline,
+top of the head,
+lower legs,
+calves,
+ankles
+and feet remain completely outside the frame,
+
+no head rotation,
+no shoulder rotation,
+no torso rotation,
+no pelvic rotation,
+no body twist,
+no three-quarter angle,
+no side profile,
+no full-body framing.
+
+2. 左45° LEFT_045
+
+HIGHEST VIEW PRIORITY:
+(exact left-front 45-degree three-quarter view:1.40),
+generate only a strict left-front three-quarter view,
+do not generate a frontal, full-profile or rear view.
+
+TARGET VIEW: LEFT_045
+
+BODY YAW: exactly 45 degrees,
+HEAD YAW: exactly 45 degrees,
+SHOULDER YAW: exactly 45 degrees,
+PELVIS YAW: exactly 45 degrees,
+
+the camera sees the model's anatomical left-front side,
+
+the model's anatomical left shoulder,
+left chest,
+left side of the ribcage,
+left side of the abdomen,
+left hip,
+left thigh
+and left knee are closer to the camera,
+
+the anatomical right shoulder,
+right side of the ribcage,
+right hip,
+right thigh
+and right knee recede naturally away from the camera,
+
+the camera simultaneously sees
+the front plane
+and the anatomical left-side plane
+of the chest,
+abdomen,
+pelvis
+and thighs,
+
+the head,
+neck,
+sternum,
+ribcage,
+abdomen,
+shoulders
+and pelvis rotate together as one aligned unit,
+
+the head remains aligned with the torso,
+the shoulders and pelvis have the same rotational direction,
+
+the nearer left shoulder and left hip appear slightly more prominent,
+while the right side recedes naturally in perspective,
+
+strict fixed crop from nasal-bridge height to kneecap height,
+
+the upper frame boundary cuts through nasal-bridge level,
+both knees remain visible near the lower frame boundary,
+the left knee appears slightly nearer than the right knee,
+
+forehead,
+hairline,
+top of the head,
+lower legs,
+calves,
+ankles
+and feet remain completely outside the frame,
+
+not a frontal view,
+not a 30-degree view,
+not a 60-degree view,
+not a full side profile,
+no independent head turn,
+no face turning back toward the camera,
+no shoulder-pelvis mismatch,
+no torso twisting,
+no pelvic twisting,
+no full-body framing.
+
+3. 左侧面 LEFT_090
+
+HIGHEST VIEW PRIORITY:
+(exact anatomical left-side profile:1.40),
+generate only a strict anatomical left-side profile,
+do not generate a frontal, three-quarter or rear view.
+
+TARGET VIEW: LEFT_090
+
+BODY YAW: exactly 90 degrees,
+HEAD YAW: exactly 90 degrees,
+SHOULDER YAW: exactly 90 degrees,
+PELVIS YAW: exactly 90 degrees,
+
+the camera directly faces the model's anatomical left side,
+
+the anatomical left facial profile,
+left side of the neck,
+left shoulder,
+left upper arm,
+left elbow,
+left side of the ribcage,
+left waist,
+left hip,
+left outer thigh
+and left knee are closest to the camera,
+
+the anatomical right side is positioned directly behind
+and is mostly visually occluded,
+
+only a clean anatomical left facial profile is visible,
+
+the forehead contour below the crop,
+nose bridge,
+nose,
+lips,
+chin,
+neck,
+chest,
+abdomen,
+pelvis,
+thigh
+and knee create one continuous side silhouette,
+
+the head,
+neck,
+shoulders,
+ribcage,
+abdomen,
+pelvis
+and knees remain aligned in a true 90-degree profile,
+
+the shoulders and pelvis remain perpendicular to the image plane,
+
+strict fixed crop from anatomical nasal-bridge height
+to kneecap height,
+
+the upper frame boundary cuts through nasal-bridge level,
+the left kneecap remains visible at the lower frame boundary,
+
+forehead,
+hairline,
+top of the head,
+lower legs,
+calves,
+ankles
+and feet remain completely outside the frame,
+
+no face turning toward the camera,
+no second eye clearly visible,
+no frontal chest presentation,
+no three-quarter angle,
+no independent head rotation,
+no torso twisting,
+no pelvic twisting,
+no full-body framing.
+
+4. 右侧面 RIGHT_090
+
+HIGHEST VIEW PRIORITY:
+(exact anatomical right-side profile:1.40),
+generate only a strict anatomical right-side profile,
+do not generate a frontal, three-quarter or rear view.
+
+TARGET VIEW: RIGHT_090
+
+BODY YAW: exactly 90 degrees,
+HEAD YAW: exactly 90 degrees,
+SHOULDER YAW: exactly 90 degrees,
+PELVIS YAW: exactly 90 degrees,
+
+the camera directly faces the model's anatomical right side,
+
+the anatomical right facial profile,
+right side of the neck,
+right shoulder,
+right upper arm,
+right elbow,
+right side of the ribcage,
+right waist,
+right hip,
+right outer thigh
+and right knee are closest to the camera,
+
+the anatomical left side is positioned directly behind
+and is mostly visually occluded,
+
+only a clean anatomical right facial profile is visible,
+
+the forehead contour below the crop,
+nose bridge,
+nose,
+lips,
+chin,
+neck,
+chest,
+abdomen,
+pelvis,
+thigh
+and knee create one continuous side silhouette,
+
+the head,
+neck,
+shoulders,
+ribcage,
+abdomen,
+pelvis
+and knees remain aligned in a true 90-degree profile,
+
+the shoulders and pelvis remain perpendicular to the image plane,
+
+strict fixed crop from anatomical nasal-bridge height
+to kneecap height,
+
+the upper frame boundary cuts through nasal-bridge level,
+the right kneecap remains visible at the lower frame boundary,
+
+forehead,
+hairline,
+top of the head,
+lower legs,
+calves,
+ankles
+and feet remain completely outside the frame,
+
+no face turning toward the camera,
+no second eye clearly visible,
+no frontal chest presentation,
+no three-quarter angle,
+no independent head rotation,
+no torso twisting,
+no pelvic twisting,
+no full-body framing.
+
+05｜右45° RIGHT_045
+
+HIGHEST VIEW PRIORITY:
+(exact right-front 45-degree three-quarter view:1.40),
+generate only a strict right-front three-quarter view,
+do not generate a frontal, full-profile or rear view.
+
+TARGET VIEW: RIGHT_045
+
+BODY YAW: exactly 45 degrees,
+HEAD YAW: exactly 45 degrees,
+SHOULDER YAW: exactly 45 degrees,
+PELVIS YAW: exactly 45 degrees,
+
+the camera sees the model's anatomical right-front side,
+
+the model's anatomical right shoulder,
+right chest,
+right side of the ribcage,
+right side of the abdomen,
+right hip,
+right thigh
+and right knee are closer to the camera,
+
+the anatomical left shoulder,
+left side of the ribcage,
+left hip,
+left thigh
+and left knee recede naturally away from the camera,
+
+the camera simultaneously sees
+the front plane
+and the anatomical right-side plane
+of the chest,
+abdomen,
+pelvis
+and thighs,
+
+the head,
+neck,
+sternum,
+ribcage,
+abdomen,
+shoulders
+and pelvis rotate together as one aligned unit,
+
+the head remains aligned with the torso,
+the shoulders and pelvis have the same rotational direction,
+
+the nearer right shoulder and right hip appear slightly more prominent,
+while the left side recedes naturally in perspective,
+
+strict fixed crop from nasal-bridge height to kneecap height,
+
+the upper frame boundary cuts through nasal-bridge level,
+both knees remain visible near the lower frame boundary,
+the right knee appears slightly nearer than the left knee,
+
+forehead,
+hairline,
+top of the head,
+lower legs,
+calves,
+ankles
+and feet remain completely outside the frame,
+
+not a frontal view,
+not a 30-degree view,
+not a 60-degree view,
+not a full side profile,
+no independent head turn,
+no face turning back toward the camera,
+no shoulder-pelvis mismatch,
+no torso twisting,
+no pelvic twisting,
+no full-body framing.
+6. 背面 BACK_180
+
+HIGHEST VIEW PRIORITY:
+(exact centered posterior rear view:1.40),
+generate only a strict full rear view,
+do not generate a rear three-quarter, side or frontal view.
+
+TARGET VIEW: BACK_180
+
+BODY YAW: exactly 180 degrees,
+HEAD YAW: exactly 180 degrees,
+SHOULDER YAW: exactly 180 degrees,
+PELVIS YAW: exactly 180 degrees,
+
+the camera is positioned directly behind the model,
+
+the model's posterior body faces directly toward the camera,
+
+the visible rear portion of the head below the upper crop boundary,
+lower rear hairline,
+back of the neck,
+trapezius,
+both shoulders,
+both shoulder blades,
+spinal line,
+lower back,
+waist,
+posterior pelvis,
+hips,
+gluteal region,
+posterior thighs
+and posterior knee regions face the camera,
+
+both shoulders are equally visible,
+both sides of the back are equally visible,
+both hips are equally visible,
+both posterior thighs are equally visible,
+both posterior knee regions are equally visible
+at the lower frame boundary,
+
+the head remains aligned with the spine,
+the shoulders and pelvis remain parallel to the image plane,
+
+strict fixed crop using the same horizontal upper level
+as the nasal-bridge crop in the frontal view,
+extending downward to kneecap height,
+
+the lower frame boundary cuts through both posterior knee regions,
+
+the upper head,
+top of the hair,
+lower legs,
+calves,
+ankles,
+heels
+and feet remain completely outside the frame,
+
+no face visible,
+no cheek visible,
+no looking over the shoulder,
+no independent head rotation,
+no neck rotation,
+no torso twisting,
+no pelvic twisting,
+no rear three-quarter view,
+no full-body framing.

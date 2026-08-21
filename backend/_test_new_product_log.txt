@@ -1,0 +1,9 @@
+[1/5] 导入商品
+Traceback (most recent call last):
+  File "D:\WEAPP\Claude Project\PDD-project\backend\_test_new_product.py", line 23, in <module>
+    product = importer.import_product(URL, cookies=cookies)
+  File "D:\WEAPP\Claude Project\PDD-project\backend\pdd_agent\importer.py", line 220, in import_product
+    raise ImportError_(
+    ...<3 lines>...
+    )
+pdd_agent.importer.ImportError_: state里确实拿到了数据，但按现在猜的字段路径（goods_name/gallery/skus等）一个都没取到值，说明这个页面版本的真实字段名和猜测的不一样，不是没数据。完整state已经存到 output/debug_state_983853250435.json，对着它把 parse_product() 里的取值路径改成真实字段名。

@@ -1,0 +1,8 @@
+.env
+pdd_login_state.json
+cookies.txt
+merchant_cookies.txt
+output/
+__pycache__/
+*.pyc
+.venv/
