@@ -1,0 +1,52 @@
+{
+  "fixture": {
+    "sanitized": true,
+    "rights": "CC0-1.0",
+    "description": "完全合成的无品牌、无商家、无客户数据样本"
+  },
+  "goods_id": "offline-fixture-001",
+  "source_url": "fixture://offline-product",
+  "assets": {
+    "fixture://offline_product.svg": {
+      "path": "offline_product.svg",
+      "type": "product",
+      "tag": "KEEP"
+    }
+  },
+  "state": {
+    "store": {
+      "initDataObj": {
+        "goods": {
+          "goodsName": "脱敏样本基础款男士平角裤",
+          "minGroupPrice": 18.5,
+          "topGallery": [
+            {"url": "fixture://offline_product.svg"}
+          ],
+          "detailGallery": [],
+          "skus": [
+            {
+              "skuId": "offline-sku-001",
+              "groupPrice": 18.5,
+              "quantity": 12,
+              "thumbUrl": "fixture://offline_product.svg",
+              "specs": [
+                {"spec_key": "颜色分类", "spec_value": "深蓝色"},
+                {"spec_key": "尺码", "spec_value": "L"}
+              ]
+            }
+          ]
+        },
+        "mall": {"mallId": "", "mallName": ""}
+      }
+    }
+  },
+  "copy": {
+    "title": "脱敏样本基础款男士平角裤",
+    "bullet_points": ["基础款版型", "深蓝色", "L 码"],
+    "description": "仅依据固定合成样本生成，供本地人工复核，不用于发布。"
+  },
+  "keywords": [
+    {"term": "男士平角裤", "relevance": 100, "note": "来自固定样本标题"},
+    {"term": "基础款", "relevance": 90, "note": "来自固定样本标题"}
+  ]
+}

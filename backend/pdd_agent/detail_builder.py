@@ -14,9 +14,9 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
 from dataclasses import asdict
 
-from . import detail_graphics
 from .models import Copy, DetailPagePreview, GeneratedImage, Keyword, ProductData
 from .utils import download_file
 
@@ -35,7 +35,13 @@ def build_detail_page(
     kept_images = [img for img in product.images if img.tag == "KEEP" and img.type in ("product", "text_info")]
     kept_paths = []
     for i, img in enumerate(kept_images):
-        path = download_file(img.url, os.path.join(kept_dir, f"kept_{i}.jpg"))
+        suffix = os.path.splitext(img.local_path)[1] if img.local_path else ".jpg"
+        path = os.path.join(kept_dir, f"kept_{i}{suffix or '.jpg'}")
+        if img.local_path:
+            os.makedirs(kept_dir, exist_ok=True)
+            shutil.copyfile(img.local_path, path)
+        else:
+            download_file(img.url, path)
         # 2026-08-13：原图错别字的自动涂改机制（OCR+圆角矩形补丁）已经按用户反馈取消——
         # 生成效果视觉上不自然（"太难受了"），用户表示这种细节自己手动处理，不需要程序自动改。
         # 原图里如果带了错别字，就原样保留，人工审核/发布前自己检查处理。
@@ -80,7 +86,7 @@ def _write_html_preview(product: ProductData, preview: DetailPagePreview, output
         return os.path.relpath(p, output_dir).replace("\\", "/")
 
     original_images_html = "".join(
-        f'<img src="{img.url}" style="width:140px;margin:4px;border:1px solid #ccc">'
+        f'<img src="{rel(img.local_path) if img.local_path else img.url}" style="width:140px;margin:4px;border:1px solid #ccc">'
         for img in product.images[:8]
     )
     new_images_html = "".join(
