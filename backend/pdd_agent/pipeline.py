@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+import json
 import os
+from dataclasses import asdict
 
 from . import analyzer, copywriter, creative, detail_builder, importer, keywords
 from .auth import load_cookies_for_requests
 from .config import Settings
 from .models import DetailPagePreview
+from .store_publisher import build_publish_plan
 
 DEFAULT_LOGIN_STATE_PATH = "pdd_login_state.json"
 
@@ -47,5 +50,19 @@ def run_pipeline(url: str, settings: Settings) -> DetailPagePreview:
     print("[6/6] 组装详情页预览")
     preview = detail_builder.build_detail_page(product, copy, kw, generated_images, output_dir)
     print(f"      -> 预览已生成: {os.path.join(output_dir, 'preview.html')}")
+
+    draft_path = os.path.join(output_dir, "publish_draft.json")
+    with open(draft_path, "w", encoding="utf-8") as f:
+        json.dump(
+            {
+                "title": copy.title,
+                "carousel_images": preview.carousel_images,
+                "plan": asdict(build_publish_plan(product)),
+            },
+            f,
+            ensure_ascii=False,
+            indent=2,
+        )
+    print(f"      -> 发布草稿数据: {draft_path}")
 
     return preview

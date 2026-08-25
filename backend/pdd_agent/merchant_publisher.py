@@ -8,7 +8,15 @@
 
 from __future__ import annotations
 
-from playwright.sync_api import Page
+import re
+from typing import TYPE_CHECKING, Any
+
+from .store_publisher import PublishPlan
+
+if TYPE_CHECKING:
+    from playwright.sync_api import Page
+else:
+    Page = Any
 
 _DROPDOWN_TRIGGER = ".ST_selectValueSingle_5-188-0"
 _DROPDOWN_PANEL = ".ST_dropdownPanel_5-188-0"
@@ -94,3 +102,111 @@ def fill_attributes(page: Page, attributes: dict[str, str]) -> list[str]:
         if not ok:
             failed.append(label_substring)
     return failed
+
+
+class HumanInterventionRequired(RuntimeError):
+    pass
+
+
+def _stop_on_verification(page: Page) -> None:
+    matches = page.get_by_text(re.compile("滑块|验证码|异常验证"))
+    if any(matches.nth(i).is_visible() for i in range(matches.count())):
+        raise HumanInterventionRequired("页面出现验证码或异常验证，已停止自动化，请人工处理后重试")
+
+
+def _first(page: Page, selectors: tuple[str, ...]):
+    for selector in selectors:
+        locator = page.locator(selector)
+        if locator.count():
+            return locator.first
+    raise RuntimeError(f"页面结构已变化，找不到控件: {selectors}")
+
+
+def fill_color_options(page: Page, names: list[str]) -> None:
+    field = _first(
+        page,
+        (
+            "input[placeholder*='添加颜色分类']",
+            "input[placeholder*='颜色分类主色']",
+            "input[placeholder*='添加规格值']",
+        ),
+    )
+    for name in names:
+        field.fill(name)
+        field.press("Enter")
+        page.wait_for_timeout(300)
+
+
+def select_sizes(page: Page, sizes: list[str]) -> None:
+    page.get_by_text("中国码", exact=True).last.click()
+    for size in sizes:
+        page.get_by_text(size, exact=True).last.click()
+    page.wait_for_timeout(500)
+
+
+def _fill_after_text(page: Page, label: str, value: str) -> None:
+    locator = page.get_by_text(label, exact=True).last.locator("xpath=following::input[1]")
+    if not locator.count():
+        raise RuntimeError(f"页面结构已变化，找不到“{label}”后的输入框")
+    locator.fill(value)
+
+
+def fill_inventory_and_prices(page: Page, plan: PublishPlan) -> None:
+    _fill_after_text(page, "库存", str(plan.stock))
+    _fill_after_text(page, "拼单价", f"{plan.group_price:.2f}")
+    _fill_after_text(page, "单买价", f"{plan.single_price:.2f}")
+    _fill_after_text(page, "商品参考价", f"{plan.reference_price:.2f}")
+
+    discount = page.get_by_text("满件折扣", exact=True).last
+    row = discount.locator("xpath=ancestor::div[.//input][1]")
+    inputs = row.locator("input")
+    rate = f"{plan.bulk_discount_rate * 10:g}"
+    if inputs.count() >= 2:
+        inputs.nth(0).fill(str(plan.bulk_discount_quantity))
+        inputs.nth(1).fill(rate)
+    elif inputs.count() == 1:
+        inputs.first.fill(rate)
+
+
+def fill_shipping_and_services(page: Page, plan: PublishPlan, shipping_template: str = "") -> None:
+    page.get_by_text(f"{plan.shipping_promise}内发货", exact=False).last.click()
+    no_reason = page.get_by_text("7天无理由退货", exact=False).last
+    checkbox = no_reason.locator("xpath=preceding::input[@type='checkbox'][1]")
+    if checkbox.count() and checkbox.is_checked() != plan.no_reason_return:
+        no_reason.click()
+    if shipping_template:
+        row = page.get_by_text("运费模板", exact=False).last
+        row.locator("xpath=following::*[contains(@class,'select')][1]").click()
+        page.get_by_text(shipping_template, exact=True).last.click()
+
+
+def fill_publish_form(
+    page: Page,
+    *,
+    title: str,
+    carousel_images: list[str],
+    plan: PublishPlan,
+    shipping_template: str = "",
+) -> list[str]:
+    """填完整张表单但不提交上架；返回两轮后仍未能填写的动态属性。"""
+    _stop_on_verification(page)
+    fill_title(page, title)
+    upload_carousel_images(page, carousel_images)
+    page.wait_for_timeout(6000)  # 等平台的图片智能属性回填结束，避免覆盖我们的值
+    failed = fill_attributes(page, plan.attributes)
+    if failed:
+        failed = fill_attributes(page, {key: plan.attributes[key] for key in failed})
+    fill_color_options(page, [color.name for color in plan.colors])
+    select_sizes(page, plan.sizes)
+    fill_inventory_and_prices(page, plan)
+    fill_shipping_and_services(page, plan, shipping_template)
+    _stop_on_verification(page)
+    return failed
+
+
+def save_draft(page: Page) -> None:
+    """保存草稿是自动化边界；“提交并上架”仍需人工审核后点击。"""
+    _stop_on_verification(page)
+    page.get_by_text("保存草稿", exact=True).last.click()
+    page.wait_for_timeout(1500)
+    _stop_on_verification(page)

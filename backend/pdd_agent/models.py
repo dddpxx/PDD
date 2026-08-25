@@ -147,3 +147,46 @@ class ProcurementTask:
     assigned_buyer_account_id: str = ""
     procurement_status: str = "PENDING"
     # PENDING | QUEUED_TODAY | DEFERRED_NEXT_DAY | AWAITING_HUMAN | PAID | SHIPPED | FAILED
+
+
+# ---- Module 08 订单中心 ----
+
+
+@dataclass
+class OrderItem:
+    my_sku_id: str
+    quantity: int
+    sale_price: float
+
+
+@dataclass
+class CustomerOrder:
+    order_id: str
+    customer_name: str
+    customer_phone: str
+    customer_address: str
+    items: list[OrderItem]
+    status: str = "PAID"
+    created_at: float = 0.0
+
+
+# ---- Module 10 客服 ----
+
+
+@dataclass
+class ListingMapping:
+    source_goods_id: str
+    source_url: str
+    my_listing_id: str
+    my_listing_url: str
+    title: str = ""
+    category: str = ""
+    tags: list[str] = field(default_factory=list)
+    status: str = "PUBLISHED"
+
+
+@dataclass
+class FaqEntry:
+    question: str
+    answer: str
+    keywords: list[str] = field(default_factory=list)
