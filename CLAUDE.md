@@ -9,8 +9,8 @@
 **当前实现进度**（重要，别按愿景假设功能都在）：
 
 - **已跑通**：Module 01~06 的"商品加工链路"（导入 → 分析 → 关键词 → 文案 → AI 场景图 → 详情页预览），已用真实链接（男士内裤，`goods_id=981833693052`）端到端验证。
-- **半成品**：Module 07 发布（改走 Playwright 操作商家后台网页，见 `DM.md §16`）、Module 09 采购履约（只做了利润守卫核价 + 账号池调度，真正的自动下单**故意没写**，见 `DM.md §15`）。
-- **未开始**：Module 08 订单中心、Module 10 AI 客服。
+- **已实现核心逻辑**：Module 07 可填标题、轮播图、动态属性、颜色/尺码、价格库存、折扣、发货承诺并保存草稿；Module 08 可校验标准订单并生成采购任务；Module 10 已有 FAQ、供应商回复清洗、源链接改写和店内推荐。
+- **仍需渠道验收/接入**：Module 07 的新增表单选择器需拿真实商家登录态做一次测试店铺验收；Module 08/10 尚未接拼多多私有订单/客服工作台；Module 09 真正自动下单仍按资金安全要求保留人工闸门。
 
 ## 技术栈
 
@@ -55,6 +55,8 @@ backend/
 └── _explore_*.py / _test_*.py / _run_log.txt / *.png  # 临时探索脚本与产物，标注"用完即删"，非正式代码
 ```
 
+`publish_draft.py` 是 Module 07 的安全入口：读取流水线生成的 `publish_draft.json`，填完整表单并只保存草稿。
+
 运行产物写到 `backend/output/<goods_id>/`（已在 `.gitignore`），如 `preview.html`（人工审核左右对比）、`detail_page.html`（模拟手机端详情页）、`scenes/*.png`。
 
 ## 如何运行
@@ -70,6 +72,7 @@ playwright install chromium          # login_pdd.py / 商家后台自动化需�
 copy .env.example .env               # 然后按下方「环境变量」填好，注意 .env.example 已过时
 python login_pdd.py                  # 弹浏览器人工登录拼多多，存 pdd_login_state.json
 python run_pipeline.py "<拼多多商品链接>"
+python publish_draft.py "output/<goods_id>/publish_draft.json" "男士平角裤" "内衣裤 > 男士内裤 > 平角裤"
 ```
 
 跑完看 `backend/output/<goods_id>/preview.html` 与 `detail_page.html`。
@@ -79,9 +82,14 @@ python run_pipeline.py "<拼多多商品链接>"
 
 ## 如何测试
 
-**当前没有自动化测试套件**（没有 `tests/` 目录，没有 pytest 配置）。验证方式一直是"拿一条真实商品链接跑 `run_pipeline.py`，肉眼审核 `preview.html`"，以及 `_test_*.py` / `_explore_*.py` 这类**一次性临时脚本**（文件头明确写了"用完即删"，不是长期测试资产，不要依赖它们）。
+自动化测试使用 pytest：
 
-> 待作者补充：是否要引入正式的自动化测试（pytest 等）、以及 CI 流程。
+```powershell
+cd backend
+python -m pytest -q
+```
+
+测试覆盖 Module 07 发布方案/表单编排、Module 08 订单到采购任务、Module 10 FAQ 与回复清洗。真实拼多多页面仍需测试店铺 smoke test，单元测试不能证明第三方 DOM 没有变化。
 
 ## 关键约定
 
@@ -95,7 +103,7 @@ python run_pipeline.py "<拼多多商品链接>"
 
 ## 环境变量
 
-**⚠️ `backend/.env.example` 已过时**：它只列了 `OPENAI_IMAGE_*` / `OPENAI_TEXT_*` / `PDD_AGENT_OUTPUT_DIR`，但代码（`config.py`）实际读取的变量更多（ComfyUI、人设、采购参数等都缺失）。建议作者补齐 `.env.example`。以下是 `config.py` 真实读取的全部变量（**不要在文档或提交里写入任何真实 key / token**）：
+`backend/.env.example` 已与 `config.py` 当前读取项同步。以下是全部变量（**不要在文档或提交里写入任何真实 key / token**）：
 
 | 变量 | 用途 | 是否必填 |
 |---|---|---|
@@ -115,6 +123,7 @@ python run_pipeline.py "<拼多多商品链接>"
 | `PDD_PROCUREMENT_DAILY_SPEND_CAP` | 每日采购总额上限/元（默认 `500`） | 选填 |
 | `PDD_PROCUREMENT_CUTOFF_HOUR` | 采购批次 cutoff 小时（默认 `18`，见 `DM.md D1.1`） | 选填 |
 | `PDD_LOGIN_STATE_PATH` | 登录态文件路径（`pipeline.py` 读取，默认 `pdd_login_state.json`） | 选填 |
+| `PDD_MERCHANT_STATE_PATH` | 商家后台登录态（`publish_draft.py` 读取，默认 `merchant_cookies.txt`） | 选填 |
 
 登录态 / cookie 文件（`.env`、`pdd_login_state.json`、`cookies.txt`、`merchant_cookies.txt`）均已在 `.gitignore`，**不要提交**。
 
@@ -130,4 +139,4 @@ python run_pipeline.py "<拼多多商品链接>"
 - **利润守卫是资金安全网**：采购下单前用 `procurement.check_profit_guard()` 重新核价，毛利率/绝对值/每日总额三道闸门任一不过就拦截转人工（`DM.md §3.5 / §15`）。
 - **采购下单执行故意留空**：`procurement.py` 的真实 `place_order` 是 TODO，涉及真实资金，需用户在场从"只走到支付前一步"的保守版本开始，别自作主张补全（`DM.md §15`）。
 
-> 待作者补充：Module 07 商品属性表单剩余必填项/SKU 表格/运费模板的自动化填写、Module 08 订单中心、Module 10 AI 客服的实现，以及生产部署方案（目前只有本地脚本，无部署配置）。
+生产拆分、发布顺序、回滚和上线前置项见根目录 `DEPLOYMENT.md`。

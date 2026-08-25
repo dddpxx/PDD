@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import time
 
-from . import importer
 from .config import Settings
 from .models import BuyerAccount, ProcurementTask, SkuMapping
 
@@ -30,6 +29,8 @@ def check_profit_guard(
     这一步是只读操作（不下单、不花钱），可以随时安全地反复调用测试，不需要真的买家账号也能测
     （只要能拿到能读到商品数据的登录态cookies，跟Module01的cookies.txt是同一份）。
     """
+    from . import importer
+
     try:
         source_product = importer.import_product(mapping.source_url, cookies=cookies)
     except Exception as e:
