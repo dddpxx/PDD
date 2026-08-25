@@ -17,8 +17,6 @@ from __future__ import annotations
 import json
 from urllib.parse import parse_qs, urlparse
 
-import requests
-
 from .models import ProductData, ProductImage, ProductSku, SpecValue
 
 MOBILE_HEADERS = {
@@ -48,6 +46,8 @@ def resolve_goods_id(url: str, cookies: dict[str, str] | None = None) -> tuple[s
     if goods_id:
         return url, goods_id
 
+    import requests
+
     resp = requests.get(url, headers=MOBILE_HEADERS, cookies=cookies, timeout=15, allow_redirects=True)
     final_url = resp.url
     parsed = urlparse(final_url)
@@ -61,6 +61,8 @@ def resolve_goods_id(url: str, cookies: dict[str, str] | None = None) -> tuple[s
 
 
 def fetch_raw_page(url: str, cookies: dict[str, str] | None = None) -> str:
+    import requests
+
     resp = requests.get(url, headers=MOBILE_HEADERS, cookies=cookies, timeout=15)
     resp.raise_for_status()
     return resp.text
