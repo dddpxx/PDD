@@ -1,9 +1,10 @@
 import json
+import shutil
 import socket
 import sys
 from pathlib import Path
 
-from run_offline_pipeline import main, run_offline_pipeline
+from run_offline_pipeline import FIXTURE_PATH, main, run_offline_pipeline
 
 
 def test_fixed_fixture_builds_review_artifacts_without_network(monkeypatch, capsys):
@@ -23,6 +24,24 @@ def test_fixed_fixture_builds_review_artifacts_without_network(monkeypatch, caps
     assert draft["carousel_images"] == ["kept/kept_0.svg"]
     assert draft["plan"]["stock"] == 12
 
-    monkeypatch.setattr(sys, "argv", ["run_offline_pipeline.py", "--fixture", "missing.json"])
+    external_fixture_dir = Path("output/external-fixture").resolve()
+    shutil.rmtree(external_fixture_dir, ignore_errors=True)
+    shutil.copytree(FIXTURE_PATH.parent, external_fixture_dir)
+    external_fixture = external_fixture_dir / FIXTURE_PATH.name
+    rejected_output = Path("output/test-rejected-fixture")
+    shutil.rmtree(rejected_output, ignore_errors=True)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_offline_pipeline.py",
+            "--output",
+            str(rejected_output),
+            "--fixture",
+            str(external_fixture),
+        ],
+    )
     assert main() == 1
-    assert "[offline] failed: FileNotFoundError" in capsys.readouterr().err
+    assert not rejected_output.exists()
+    assert "[offline] failed: unsupported arguments: --fixture" in capsys.readouterr().err
+    shutil.rmtree(external_fixture_dir)

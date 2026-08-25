@@ -22,9 +22,9 @@ def _relative(path: str, output_dir: Path) -> str:
     return Path(os.path.relpath(path, output_dir)).as_posix()
 
 
-def run_offline_pipeline(output_dir: str | Path, fixture_path: str | Path = FIXTURE_PATH) -> tuple[Path, Path]:
+def run_offline_pipeline(output_dir: str | Path) -> tuple[Path, Path]:
     output_dir = Path(output_dir)
-    fixture_path = Path(fixture_path)
+    fixture_path = FIXTURE_PATH
     fixture = json.loads(fixture_path.read_text(encoding="utf-8"))
     fixture_info = fixture.get("fixture", {})
     if fixture_info.get("sanitized") is not True or fixture_info.get("rights") != "CC0-1.0":
@@ -85,10 +85,12 @@ def run_offline_pipeline(output_dir: str | Path, fixture_path: str | Path = FIXT
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", default="output/jing-30", help="local output directory")
-    parser.add_argument("--fixture", default=str(FIXTURE_PATH), help="rights-cleared local fixture")
-    args = parser.parse_args()
+    args, unsupported = parser.parse_known_args()
+    if unsupported:
+        print(f"[offline] failed: unsupported arguments: {' '.join(unsupported)}", file=sys.stderr)
+        return 1
     try:
-        preview_path, draft_path = run_offline_pipeline(args.output, args.fixture)
+        preview_path, draft_path = run_offline_pipeline(args.output)
     except Exception as exc:
         print(f"[offline] failed: {type(exc).__name__}: {exc}", file=sys.stderr)
         return 1
