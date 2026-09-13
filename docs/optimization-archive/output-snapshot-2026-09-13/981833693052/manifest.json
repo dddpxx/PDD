@@ -1,0 +1,112 @@
+{
+  "goods_id": "981833693052",
+  "copy": {
+    "title": "男士夏季洞洞透气凉感无痕双C囊袋平角内裤",
+    "bullet_points": [
+      "双C囊袋设计，促进局部通风与空气对流",
+      "洞洞透气结合微透气孔，夏季穿着更清爽",
+      "凉感速干设计，兼顾导汗与透气体验",
+      "无痕裤脚不勒腿，日常贴身穿着更舒适",
+      "平角版型覆盖完整，配有透气网包"
+    ],
+    "description": "采用双C囊袋与透气网包设计，形成局部通风结构，配合洞洞透气和微透气孔，促进空气对流。大风量导汗设计兼顾透气与速干表现，适合夏季高温环境下穿着，帮助保持清爽体验。\n\n凉感设计贴合夏季穿着需求，无痕结构减少贴身穿着时的突兀感。无痕裤脚不勒腿，在保持平角版型完整覆盖的同时，兼顾日常活动时的舒适度。\n\n这款男士平角内裤面向重视透气、清爽与舒适体验的成年男性，可用于夏季日常贴身穿着。双C通风系统、凉感速干和无痕裤脚相互配合，满足高温季节对通风与穿着舒适度的需求。"
+  },
+  "ordered_images": [
+    "output\\981833693052\\scenes\\坐姿卧推凳上，双手各持一只哑铃做哑铃卧推.png",
+    "output\\981833693052\\scenes\\站在深蹲架旁边，侧身面对器械，一只手扶着深蹲架的立柱调整挂钩高度，低头看着器械，另一只手自然垂放.png",
+    "output\\981833693052\\scenes\\站在龙门架旁，一只手搭在器械立柱上，另一只手自然垂放，稍作休息的站姿.png",
+    "output\\981833693052\\scenes\\单杠下，双手悬垂做引体向上，背部肌肉发力绷紧.png",
+    "output\\981833693052\\scenes\\跑步机旁站立，单脚踩在跑步机踏板上系鞋带，额头带汗.png",
+    "output\\981833693052\\graphics\\selling_points.png",
+    "output\\981833693052\\graphics\\description.png",
+    "output\\981833693052\\kept\\kept_0.jpg",
+    "output\\981833693052\\kept\\kept_1.jpg",
+    "output\\981833693052\\kept\\kept_2.jpg"
+  ],
+  "keywords": [
+    {
+      "term": "平角内裤",
+      "relevance": 100,
+      "note": "来自style字段和类目"
+    },
+    {
+      "term": "男士内裤",
+      "relevance": 100,
+      "note": "来自gender字段和标题语义"
+    },
+    {
+      "term": "男款",
+      "relevance": 96,
+      "note": "来自gender字段，标题常用表达"
+    },
+    {
+      "term": "夏季",
+      "relevance": 95,
+      "note": "来自season字段"
+    },
+    {
+      "term": "洞洞透气",
+      "relevance": 94,
+      "note": "来自features字段"
+    },
+    {
+      "term": "凉感",
+      "relevance": 92,
+      "note": "来自features字段"
+    },
+    {
+      "term": "无痕",
+      "relevance": 92,
+      "note": "来自features字段"
+    },
+    {
+      "term": "双C囊袋",
+      "relevance": 91,
+      "note": "来自features字段"
+    },
+    {
+      "term": "速干",
+      "relevance": 88,
+      "note": "来自features字段"
+    },
+    {
+      "term": "透气网包",
+      "relevance": 86,
+      "note": "来自features字段"
+    },
+    {
+      "term": "无痕裤脚",
+      "relevance": 84,
+      "note": "来自features字段"
+    },
+    {
+      "term": "不勒腿",
+      "relevance": 83,
+      "note": "来自features字段"
+    },
+    {
+      "term": "微透气孔",
+      "relevance": 81,
+      "note": "来自features字段"
+    },
+    {
+      "term": "大风量导汗",
+      "relevance": 78,
+      "note": "来自features字段"
+    },
+    {
+      "term": "四角短裤",
+      "relevance": 74,
+      "note": "来自标题语义，和平角内裤同类表达"
+    }
+  ],
+  "carousel_images": [
+    "output\\981833693052\\scenes\\坐姿卧推凳上，双手各持一只哑铃做哑铃卧推.png",
+    "output\\981833693052\\scenes\\站在深蹲架旁边，侧身面对器械，一只手扶着深蹲架的立柱调整挂钩高度，低头看着器械，另一只手自然垂放.png",
+    "output\\981833693052\\scenes\\站在龙门架旁，一只手搭在器械立柱上，另一只手自然垂放，稍作休息的站姿.png",
+    "output\\981833693052\\scenes\\单杠下，双手悬垂做引体向上，背部肌肉发力绷紧.png",
+    "output\\981833693052\\scenes\\跑步机旁站立，单脚踩在跑步机踏板上系鞋带，额头带汗.png"
+  ],
+  "white_bg_image": "output\\981833693052\\scenes\\坐姿卧推凳上，双手各持一只哑铃做哑铃卧推.png",
+  "long_image": "output\\981833693052\\long_image.jpg"
+}

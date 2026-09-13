@@ -1,0 +1,114 @@
+{
+  "goods_id": "957214567105",
+  "copy": {
+    "title": "男士三角内裤 U凸囊袋 低腰高叉 2条装",
+    "bullet_points": [
+      "U凸囊袋设计，贴合更自在",
+      "大网眼透气面料，穿着更清爽",
+      "低腰高叉版型，线条更利落",
+      "紧身贴合身形，三角款更显身形",
+      "速干特性，日常更好打理"
+    ],
+    "description": "这款男士三角内裤采用U凸囊袋设计，结合紧身贴合的版型，整体轮廓更利落。低腰与高叉元素搭配在一起，呈现更简洁的穿着效果，适合偏好贴身、性感风格的日常选择。\n\n面料采用透气大网眼设计，并具备速干特性，穿着时更注重轻快感受。三角款式配合贴身剪裁，能够保持整体服帖度，减少松垮感，适合日常换穿。\n\n本款为2条装组合，配色包含酒红+藏青与藏青双条配色可选，方便替换穿着。适合偏好透气设计、紧身版型的成年男性日常使用。"
+  },
+  "ordered_images": [
+    "output\\957214567105\\scenes\\正面面对镜头，双手自然垂放身体两侧，目视前方，展现商品正面结构.png",
+    "output\\957214567105\\scenes\\身体侧对镜头、微微转头看向镜头方向，展现商品侧面轮廓和腰头剪裁.png",
+    "output\\957214567105\\scenes\\背对镜头站立，头部侧转回望镜头，展现商品背面设计和腰线.png",
+    "output\\957214567105\\kept\\kept_0.jpg",
+    "output\\957214567105\\kept\\kept_1.jpg",
+    "output\\957214567105\\kept\\kept_2.jpg",
+    "output\\957214567105\\kept\\kept_3.jpg",
+    "output\\957214567105\\kept\\kept_4.jpg",
+    "output\\957214567105\\kept\\kept_5.jpg"
+  ],
+  "keywords": [
+    {
+      "term": "男士三角内裤",
+      "relevance": 100,
+      "note": "类目核心词"
+    },
+    {
+      "term": "三角款",
+      "relevance": 98,
+      "note": "来自features字段"
+    },
+    {
+      "term": "U凸囊袋",
+      "relevance": 97,
+      "note": "来自features字段"
+    },
+    {
+      "term": "透气大网眼",
+      "relevance": 96,
+      "note": "来自features字段"
+    },
+    {
+      "term": "低腰",
+      "relevance": 95,
+      "note": "来自features字段"
+    },
+    {
+      "term": "高叉",
+      "relevance": 94,
+      "note": "来自features字段"
+    },
+    {
+      "term": "紧身",
+      "relevance": 93,
+      "note": "来自features字段"
+    },
+    {
+      "term": "速干",
+      "relevance": 92,
+      "note": "来自features字段"
+    },
+    {
+      "term": "2条装",
+      "relevance": 91,
+      "note": "来自features字段"
+    },
+    {
+      "term": "性感",
+      "relevance": 90,
+      "note": "来自style字段/标题卖点"
+    },
+    {
+      "term": "男士",
+      "relevance": 89,
+      "note": "来自gender字段/标题"
+    },
+    {
+      "term": "爆款",
+      "relevance": 80,
+      "note": "来自标题常用营销词"
+    },
+    {
+      "term": "透气",
+      "relevance": 78,
+      "note": "来自features字段中的透气大网眼"
+    },
+    {
+      "term": "大网眼",
+      "relevance": 77,
+      "note": "来自features字段中的透气大网眼"
+    },
+    {
+      "term": "囊袋内裤",
+      "relevance": 76,
+      "note": "由U凸囊袋设计延伸的常见关键词"
+    }
+  ],
+  "carousel_images": [
+    "output\\957214567105\\scenes\\正面面对镜头，双手自然垂放身体两侧，目视前方，展现商品正面结构.png",
+    "output\\957214567105\\scenes\\身体侧对镜头、微微转头看向镜头方向，展现商品侧面轮廓和腰头剪裁.png",
+    "output\\957214567105\\scenes\\背对镜头站立，头部侧转回望镜头，展现商品背面设计和腰线.png",
+    "output\\957214567105\\kept\\kept_0.jpg",
+    "output\\957214567105\\kept\\kept_1.jpg",
+    "output\\957214567105\\kept\\kept_2.jpg",
+    "output\\957214567105\\kept\\kept_3.jpg",
+    "output\\957214567105\\kept\\kept_4.jpg",
+    "output\\957214567105\\kept\\kept_5.jpg"
+  ],
+  "white_bg_image": "output\\957214567105\\scenes\\正面面对镜头，双手自然垂放身体两侧，目视前方，展现商品正面结构.png"
+}

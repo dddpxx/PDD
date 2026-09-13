@@ -25,7 +25,7 @@ class Settings:
     comfy_qwen_unet_name: str
     comfy_qwen_clip_name: str
     comfy_qwen_vae_name: str
-    # 模特人设代号（见 personas.py），现在有 壮壮/土土/憨憨/帅帅 这几个已命名的候选，
+    # 模特人设代号（见 personas.py），默认使用用户指定的肌肉男，
     # 不同商品想用哪个人设跑，改 PDD_PERSONA_CODENAME 这个环境变量就行，不用改代码。
     persona_codename: str
     # Module 09 采购履约相关参数，对应 DM.md §4 D1 的拍板结论
@@ -56,14 +56,14 @@ def load_settings() -> Settings:
         image_base_url=os.environ.get("OPENAI_IMAGE_BASE_URL") or None,
         image_model=os.environ.get("OPENAI_IMAGE_MODEL", "gpt-image-1"),
         output_dir=os.environ.get("PDD_AGENT_OUTPUT_DIR", "output"),
-        comfy_base_url=os.environ.get("COMFY_BASE_URL", "http://127.0.0.1:8189"),
+        comfy_base_url=os.environ.get("COMFY_BASE_URL", "http://100.83.253.18:8189"),
         comfy_unet_name=os.environ.get("COMFY_UNET_NAME", "z_image_turbo_bf16.safetensors"),
         comfy_clip_name=os.environ.get("COMFY_CLIP_NAME", "qwen_3_4b.safetensors"),
         comfy_vae_name=os.environ.get("COMFY_VAE_NAME", "ae.safetensors"),
         comfy_qwen_unet_name=os.environ.get("COMFY_QWEN_UNET_NAME", "qwen_image_edit_2509_fp8_e4m3fn.safetensors"),
         comfy_qwen_clip_name=os.environ.get("COMFY_QWEN_CLIP_NAME", "qwen_2.5_vl_7b_fp8_scaled.safetensors"),
         comfy_qwen_vae_name=os.environ.get("COMFY_QWEN_VAE_NAME", "qwen_image_vae.safetensors"),
-        persona_codename=os.environ.get("PDD_PERSONA_CODENAME", "帅帅"),
+        persona_codename=os.environ.get("PDD_PERSONA_CODENAME", "肌肉男"),
         procurement_min_margin_rate=float(os.environ.get("PDD_PROCUREMENT_MIN_MARGIN_RATE", "0.25")),
         procurement_min_margin_absolute=float(os.environ.get("PDD_PROCUREMENT_MIN_MARGIN_ABS", "8")),
         procurement_daily_spend_cap=float(os.environ.get("PDD_PROCUREMENT_DAILY_SPEND_CAP", "500")),

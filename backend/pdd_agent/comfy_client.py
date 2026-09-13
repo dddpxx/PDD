@@ -14,7 +14,7 @@
   再过任何超分辨率模型（试过 4x-UltraSharp，会在暗色区域生成假的网状纹理伪影，越描越花）。
 
 requests 会读 HTTP_PROXY/HTTPS_PROXY 环境变量，本机这两个变量指向一个只认外网域名的
-代理，转发 127.0.0.1 请求会直接 502——所以这里所有请求都显式传 proxies={} 绕开，
+代理，转发 127.0.0.1 请求会直接 502——所以这里所有请求都显式设置空代理地址绕开，
 不依赖调用方有没有设置 NO_PROXY。
 """
 
@@ -29,7 +29,28 @@ import requests
 
 from .config import Settings
 
-_NO_PROXY = {"http": None, "https": None}
+_NO_PROXY = {"http": "", "https": ""}
+
+
+def validate_reference_models(settings: Settings) -> None:
+    """上传参考图前检查编辑能力，给出缺失模型清单。"""
+    resp = requests.get(f"{settings.comfy_base_url}/object_info", proxies=_NO_PROXY, timeout=30)
+    resp.raise_for_status()
+    info = resp.json()
+    missing = []
+    for node, field, name in (
+        ("UNETLoader", "unet_name", settings.comfy_qwen_unet_name),
+        ("CLIPLoader", "clip_name", settings.comfy_qwen_clip_name),
+        ("VAELoader", "vae_name", settings.comfy_qwen_vae_name),
+    ):
+        choices = info.get(node, {}).get("input", {}).get("required", {}).get(field, [[]])[0]
+        if name not in choices:
+            missing.append(name)
+    if "TextEncodeQwenImageEditPlus" not in info:
+        missing.append("TextEncodeQwenImageEditPlus 节点")
+    if missing:
+        raise RuntimeError("参考图编辑不可用，缺少: " + ", ".join(missing) +
+                           "。Z-Image 文生图不能替代人物/商品参考图编辑。")
 
 
 def _queue_prompt(settings: Settings, workflow: dict) -> str:
@@ -39,10 +60,10 @@ def _queue_prompt(settings: Settings, workflow: dict) -> str:
         proxies=_NO_PROXY,
         timeout=30,
     )
-    resp.raise_for_status()
     result = resp.json()
     if result.get("error"):
         raise RuntimeError(f"ComfyUI 拒绝了这次生图请求: {result}")
+    resp.raise_for_status()
     return result["prompt_id"]
 
 
@@ -75,8 +96,10 @@ def _download_result(settings: Settings, result: dict, out_path: str, save_node_
         timeout=30,
     )
     resp.raise_for_status()
-    with open(out_path, "wb") as f:
+    part_path = f"{out_path}.part"
+    with open(part_path, "wb") as f:
         f.write(resp.content)
+    os.replace(part_path, out_path)
 
 
 def _upload_image(settings: Settings, local_path: str) -> str:
@@ -89,7 +112,8 @@ def _upload_image(settings: Settings, local_path: str) -> str:
             timeout=60,
         )
     resp.raise_for_status()
-    return resp.json()["name"]
+    uploaded = resp.json()
+    return "/".join(part for part in (uploaded.get("subfolder", ""), uploaded["name"]) if part)
 
 
 # ---- Z-Image-Turbo：纯文生图（无参考图能力，见模块docstring里的取舍说明） ----
@@ -154,6 +178,7 @@ def _build_qwen_edit_workflow(
     steps: int,
     cfg: float,
     seed: int,
+    outpaint_padding: tuple[int, int, int, int] | None = None,
 ) -> dict:
     workflow = {
         "37": {"class_type": "UNETLoader", "inputs": {"unet_name": settings.comfy_qwen_unet_name, "weight_dtype": "default"}},
@@ -174,7 +199,26 @@ def _build_qwen_edit_workflow(
             },
         },
     }
-    text_encode_inputs = {"clip": ["38", 0], "vae": ["39", 0], "image1": ["117", 0]}
+    identity_image = ["117", 0]
+    if outpaint_padding:
+        left, top, right, bottom = outpaint_padding
+        workflow["118"] = {
+            "class_type": "ImagePadForOutpaint",
+            "inputs": {
+                "image": ["78a", 0],
+                "left": left,
+                "top": top,
+                "right": right,
+                "bottom": bottom,
+                "feathering": 32,
+            },
+        }
+        workflow["88"] = {
+            "class_type": "VAEEncodeForInpaint",
+            "inputs": {"pixels": ["118", 0], "vae": ["39", 0], "mask": ["118", 1], "grow_mask_by": 8},
+        }
+        identity_image = ["118", 0]
+    text_encode_inputs = {"clip": ["38", 0], "vae": ["39", 0], "image1": identity_image}
     if product_name:
         workflow["78b"] = {"class_type": "LoadImage", "inputs": {"image": product_name}}
         text_encode_inputs["image2"] = ["78b", 0]
@@ -193,6 +237,7 @@ def generate_image_with_references(
     steps: int = 20,
     cfg: float = 2.5,
     seed: int | None = None,
+    outpaint_padding: tuple[int, int, int, int] | None = None,
 ) -> None:
     """调用本地 ComfyUI（Qwen-Image-Edit-2509）按参考图 + 文本 prompt 生成一张图，存到 out_path。
 
@@ -202,9 +247,12 @@ def generate_image_with_references(
     """
     if seed is None:
         seed = random.randint(0, 2**31 - 1)
+    validate_reference_models(settings)
     persona_name = _upload_image(settings, persona_path)
     product_name = _upload_image(settings, product_path) if product_path else None
-    workflow = _build_qwen_edit_workflow(settings, persona_name, product_name, prompt, negative_prompt, steps, cfg, seed)
+    workflow = _build_qwen_edit_workflow(
+        settings, persona_name, product_name, prompt, negative_prompt, steps, cfg, seed, outpaint_padding
+    )
     prompt_id = _queue_prompt(settings, workflow)
     # Qwen-Image-Edit 模型比 z_image_turbo 大得多（~20GB+9GB），这台12GB显存的机器要靠CPU/显存
     # 换入换出，第一次加载模型加上20步采样实测要4-6分钟，超时给宽松点，别把正常耗时误判成卡死。

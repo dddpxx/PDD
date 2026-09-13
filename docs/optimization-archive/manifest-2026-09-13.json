@@ -1,0 +1,286 @@
+{
+  "date": "2026-09-13",
+  "timezone": "Asia/Shanghai",
+  "files": [
+    {
+      "source": "backend/output/957214567105/detail_page.html",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/detail_page.html",
+      "bytes": 1281,
+      "sha256": "92123a6809c5890190e7419d9f38f7a0eaac0ade8835df1f4cc60bcd8f6c5b76"
+    },
+    {
+      "source": "backend/output/957214567105/kept/kept_0.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/kept/kept_0.jpg",
+      "bytes": 239752,
+      "sha256": "8a3442d1ad97566415dc639c27296a37323656c0288c7230e401d38f9b343b02"
+    },
+    {
+      "source": "backend/output/957214567105/kept/kept_1.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/kept/kept_1.jpg",
+      "bytes": 263154,
+      "sha256": "f2dd52e1c56f15b3d50a0fa35854770592810e2d84fdc9de96fcb66a23b6dfa2"
+    },
+    {
+      "source": "backend/output/957214567105/kept/kept_2.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/kept/kept_2.jpg",
+      "bytes": 135142,
+      "sha256": "599d5fa0ee83173a20d9c19794b2b9fcc376aa3b682db5bedbdc39ed5775d2da"
+    },
+    {
+      "source": "backend/output/957214567105/kept/kept_3.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/kept/kept_3.jpg",
+      "bytes": 224061,
+      "sha256": "b661ef4b3300dd8905b768025ae710ad8912d3e1b94e1cd685974e2e2b4a908f"
+    },
+    {
+      "source": "backend/output/957214567105/kept/kept_4.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/kept/kept_4.jpg",
+      "bytes": 242461,
+      "sha256": "c2c7d42b90b94003555b115018488201dad6069b218e5eaf9515b541e4d1b867"
+    },
+    {
+      "source": "backend/output/957214567105/kept/kept_5.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/kept/kept_5.jpg",
+      "bytes": 135142,
+      "sha256": "599d5fa0ee83173a20d9c19794b2b9fcc376aa3b682db5bedbdc39ed5775d2da"
+    },
+    {
+      "source": "backend/output/957214567105/kept/kept_6.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/kept/kept_6.jpg",
+      "bytes": 242461,
+      "sha256": "c2c7d42b90b94003555b115018488201dad6069b218e5eaf9515b541e4d1b867"
+    },
+    {
+      "source": "backend/output/957214567105/kept/kept_7.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/kept/kept_7.jpg",
+      "bytes": 183139,
+      "sha256": "f9460e1bac5bf7cafa9ace1adbf879c1666e97bd33f290f41033c49b6959fed1"
+    },
+    {
+      "source": "backend/output/957214567105/kept/kept_8.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/kept/kept_8.jpg",
+      "bytes": 202339,
+      "sha256": "4edf2bb2f3efb8956113835da062d8360420a940bf5c7cc63faae3b64a6a6f6d"
+    },
+    {
+      "source": "backend/output/957214567105/kept/kept_9.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/kept/kept_9.jpg",
+      "bytes": 135142,
+      "sha256": "599d5fa0ee83173a20d9c19794b2b9fcc376aa3b682db5bedbdc39ed5775d2da"
+    },
+    {
+      "source": "backend/output/957214567105/manifest.json",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/manifest.json",
+      "bytes": 4251,
+      "sha256": "b9d6bf39b2fdef3673559703d8a7814cffc930ee64378d24ed26ce56eb4fafa1"
+    },
+    {
+      "source": "backend/output/957214567105/preview.html",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/preview.html",
+      "bytes": 4336,
+      "sha256": "bcb3415f2d20b3ed80ade9a4472b16fb8f94d79516f13c28ac02fc712f0b49b3"
+    },
+    {
+      "source": "backend/output/957214567105/reference/ref_0.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/reference/ref_0.jpg",
+      "bytes": 122362,
+      "sha256": "ad1d6664e83e037837b5a7fb9b5350b39cc6e359afce714c5fef68d3170ae6d2"
+    },
+    {
+      "source": "backend/output/957214567105/scenes/正面面对镜头，双手自然垂放身体两侧，目视前方，展现商品正面结构.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/scenes/正面面对镜头，双手自然垂放身体两侧，目视前方，展现商品正面结构.png",
+      "bytes": 1102352,
+      "sha256": "59bedb9aab2d41af3afb7aba5c0cbcd36748cb4e92a6dd64c4034a9bd7174802"
+    },
+    {
+      "source": "backend/output/957214567105/scenes/背对镜头站立，头部侧转回望镜头，展现商品背面设计和腰线.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/scenes/背对镜头站立，头部侧转回望镜头，展现商品背面设计和腰线.png",
+      "bytes": 1085951,
+      "sha256": "ac24a962a13a4754bad9e1260015bac9f5118ae9d4692abd1fcbb9c8f150d5c0"
+    },
+    {
+      "source": "backend/output/957214567105/scenes/身体侧对镜头、微微转头看向镜头方向，展现商品侧面轮廓和腰头剪裁.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/957214567105/scenes/身体侧对镜头、微微转头看向镜头方向，展现商品侧面轮廓和腰头剪裁.png",
+      "bytes": 1280013,
+      "sha256": "93e40828842cdb5519aa9e654c9cc893f2e1e75911480fbec3d7386b68344834"
+    },
+    {
+      "source": "backend/output/979560650567/detail_page.html",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/979560650567/detail_page.html",
+      "bytes": 1556,
+      "sha256": "1e4295730bf4668a9b810499b897b9950e9add6d6c42d03996b2535936019b4b"
+    },
+    {
+      "source": "backend/output/979560650567/graphics/description.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/979560650567/graphics/description.png",
+      "bytes": 162040,
+      "sha256": "7a80be08866e7fbcb13c6d4b8de2da4682101a5e249868e480e5c3716a2abb3b"
+    },
+    {
+      "source": "backend/output/979560650567/graphics/selling_points.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/979560650567/graphics/selling_points.png",
+      "bytes": 49486,
+      "sha256": "2c1c77b133cd20bde16c6218111fd23fd4da06225bc35e91078fb79380fdcab6"
+    },
+    {
+      "source": "backend/output/979560650567/manifest.json",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/979560650567/manifest.json",
+      "bytes": 4939,
+      "sha256": "a79d03bd81d463c858506fc208c337fb080a74f52d6b3219e02a13ed5eaf18d5"
+    },
+    {
+      "source": "backend/output/979560650567/preview.html",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/979560650567/preview.html",
+      "bytes": 4725,
+      "sha256": "4aaf5e0104cb3f8145a7fcb729bc6b94a6259215ba05ab7d5f77d0605e8a0f15"
+    },
+    {
+      "source": "backend/output/979560650567/reference/ref_0.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/979560650567/reference/ref_0.jpg",
+      "bytes": 141114,
+      "sha256": "14301d77d95083852f7c71186deaa58601bad1da7f91849bac6ffabfd2a76d93"
+    },
+    {
+      "source": "backend/output/979560650567/scenes/单膝跪地，另一只脚踩地支撑，一只手搭在抬起的膝盖上，侧身角度面对镜头.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/979560650567/scenes/单膝跪地，另一只脚踩地支撑，一只手搭在抬起的膝盖上，侧身角度面对镜头.png",
+      "bytes": 1364765,
+      "sha256": "31597cced281edaa6f080e80a8f9ead33d1e79837d433b288c63c5cfbd5cdd4a"
+    },
+    {
+      "source": "backend/output/979560650567/scenes/坐在健身房长凳上，上身微微前倾，双手自然搭在膝盖两侧，目视前方.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/979560650567/scenes/坐在健身房长凳上，上身微微前倾，双手自然搭在膝盖两侧，目视前方.png",
+      "bytes": 1378762,
+      "sha256": "51ed2935882c1b43d08602584efe72a3d40614ae5ae5468d9818d4f7f2e73b98"
+    },
+    {
+      "source": "backend/output/979560650567/scenes/站姿，正面面对镜头，双手自然垂放身体两侧，目视前方，展现商品正面结构.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/979560650567/scenes/站姿，正面面对镜头，双手自然垂放身体两侧，目视前方，展现商品正面结构.png",
+      "bytes": 1383353,
+      "sha256": "29fa5dbd1ff20a8dceded1cf435493c578c816eb6c95cfdd22d8e5a9e58ead55"
+    },
+    {
+      "source": "backend/output/979560650567/scenes/站姿，身体侧对镜头、微微转头看向镜头方向，展现商品侧面轮廓和腰头剪裁.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/979560650567/scenes/站姿，身体侧对镜头、微微转头看向镜头方向，展现商品侧面轮廓和腰头剪裁.png",
+      "bytes": 1252899,
+      "sha256": "d17409fed84388c9cf1395a6b796fddc499ac207c870ac018e3850a61e3076f2"
+    },
+    {
+      "source": "backend/output/979560650567/scenes/背对镜头、单膝跪地俯身调整鞋带的姿势，头部不转向镜头，展现商品背面.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/979560650567/scenes/背对镜头、单膝跪地俯身调整鞋带的姿势，头部不转向镜头，展现商品背面.png",
+      "bytes": 1350646,
+      "sha256": "a6a28d5212ffbeb9648635ecc090858ec96f17cdd932545814dfbcda3d624d0b"
+    },
+    {
+      "source": "backend/output/979560650567/scenes/背对镜头站立，头部侧转回望镜头，展现商品背面设计和腰线.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/979560650567/scenes/背对镜头站立，头部侧转回望镜头，展现商品背面设计和腰线.png",
+      "bytes": 1260389,
+      "sha256": "76dda3f744cabde956b2220876f96b3f1e187439284ebcfd983320ffd87bbdbe"
+    },
+    {
+      "source": "backend/output/981833693052/detail_page.html",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/981833693052/detail_page.html",
+      "bytes": 1520,
+      "sha256": "9a8f71edf120b41df0554ba367b0c675e06787bbfb9bed7315b194deecef218b"
+    },
+    {
+      "source": "backend/output/981833693052/graphics/description.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/981833693052/graphics/description.png",
+      "bytes": 147954,
+      "sha256": "10a42ba087ac2f2f838284a593bac9db52ab528e28f3156c7ede0739838f08bf"
+    },
+    {
+      "source": "backend/output/981833693052/graphics/selling_points.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/981833693052/graphics/selling_points.png",
+      "bytes": 61202,
+      "sha256": "c3a2746fad837ce48b7127b069cae227d2105fed14b3f8fae1098296959f2b6d"
+    },
+    {
+      "source": "backend/output/981833693052/kept/kept_0.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/981833693052/kept/kept_0.jpg",
+      "bytes": 119537,
+      "sha256": "c4ab947e659a51aaf64374212ea5975e847a1721e5619b47bd9d9e225afa26e7"
+    },
+    {
+      "source": "backend/output/981833693052/kept/kept_1.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/981833693052/kept/kept_1.jpg",
+      "bytes": 110646,
+      "sha256": "b04b7bc94df1ecc96e7e3235a5526593b426dfa9e5ebdc4dcdeaa89b8dd74804"
+    },
+    {
+      "source": "backend/output/981833693052/kept/kept_2.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/981833693052/kept/kept_2.jpg",
+      "bytes": 152698,
+      "sha256": "8b24efc379c72c3ab403c9d53fa18e0c1343d071a5d570540bfef54a008ec7e0"
+    },
+    {
+      "source": "backend/output/981833693052/long_image.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/981833693052/long_image.jpg",
+      "bytes": 1543111,
+      "sha256": "6a3985fb822cc09a29f7549586b78b63ec203bd7bbc1b239cc5895b71cf4dafb"
+    },
+    {
+      "source": "backend/output/981833693052/manifest.json",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/981833693052/manifest.json",
+      "bytes": 4653,
+      "sha256": "56d8c1f04be7f5c6278429304f952e81782db2356ed9bf0677b2e5daec8b159f"
+    },
+    {
+      "source": "backend/output/981833693052/preview.html",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/981833693052/preview.html",
+      "bytes": 4202,
+      "sha256": "cc8a3e26bcc46699cfb3237e97da21dfc5fd1dcb8cdb9084cade9980de41a1ea"
+    },
+    {
+      "source": "backend/output/981833693052/reference/ref_0.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/981833693052/reference/ref_0.jpg",
+      "bytes": 94059,
+      "sha256": "ee77f8119f98069f9f609a08c68172686dab56ba65867f32f795c3de2af3bd0a"
+    },
+    {
+      "source": "backend/output/981833693052/scenes/单杠下，双手悬垂做引体向上，背部肌肉发力绷紧.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/981833693052/scenes/单杠下，双手悬垂做引体向上，背部肌肉发力绷紧.png",
+      "bytes": 2066890,
+      "sha256": "db694dfe72054ae76263e5fdde0315e223573ca784a00fcd078afc87bc2329dc"
+    },
+    {
+      "source": "backend/output/981833693052/scenes/坐姿卧推凳上，双手各持一只哑铃做哑铃卧推.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/981833693052/scenes/坐姿卧推凳上，双手各持一只哑铃做哑铃卧推.png",
+      "bytes": 2083215,
+      "sha256": "904a2142a040ac29a46cd1d528ba4e5aaeff5e9a74760054f81ce6fa4bdb9025"
+    },
+    {
+      "source": "backend/output/981833693052/scenes/站在深蹲架旁边，侧身面对器械，一只手扶着深蹲架的立柱调整挂钩高度，低头看着器械，另一只手自然垂放.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/981833693052/scenes/站在深蹲架旁边，侧身面对器械，一只手扶着深蹲架的立柱调整挂钩高度，低头看着器械，另一只手自然垂放.png",
+      "bytes": 2065597,
+      "sha256": "7729a3a2dd7bd34767836a30f189e0c2095853317d459bb733f51f2d01a8b8dd"
+    },
+    {
+      "source": "backend/output/981833693052/scenes/站在龙门架旁，一只手搭在器械立柱上，另一只手自然垂放，稍作休息的站姿.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/981833693052/scenes/站在龙门架旁，一只手搭在器械立柱上，另一只手自然垂放，稍作休息的站姿.png",
+      "bytes": 2153433,
+      "sha256": "e3c4d68fd54c95a56e764b1479e755b7a3f5b92551a085b8ff77c9c2164a91fa"
+    },
+    {
+      "source": "backend/output/981833693052/scenes/跑步机旁站立，单脚踩在跑步机踏板上系鞋带，额头带汗.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/981833693052/scenes/跑步机旁站立，单脚踩在跑步机踏板上系鞋带，额头带汗.png",
+      "bytes": 2156065,
+      "sha256": "6d406bdf3a2e026846cb740bf78600bafd46f21cc039c7ed00c00c50486949e2"
+    },
+    {
+      "source": "backend/output/983853250435/reference/ref_0.jpg",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/983853250435/reference/ref_0.jpg",
+      "bytes": 245275,
+      "sha256": "79811981c7f0e1dbb066bd9d38cee6a6786be4009d77f3584818806dd54604b6"
+    },
+    {
+      "source": "backend/output/generation-check-20260909/pdd-z-image.png",
+      "archive": "docs/optimization-archive/output-snapshot-2026-09-13/generation-check-20260909/pdd-z-image.png",
+      "bytes": 914524,
+      "sha256": "815d00d50b09891b9eda4dd76c17b13c4b98f6e78115e58764acf7238354ba48"
+    }
+  ],
+  "excluded": [
+    "backend/output/debug_state_*.json: browser debug state",
+    "backend/output/generation-check-20260909/xhs/: another project"
+  ]
+}

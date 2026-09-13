@@ -1,0 +1,112 @@
+{
+  "goods_id": "979560650567",
+  "copy": {
+    "title": "男士2条装超低腰紧身三角内裤网眼透气轻薄速干",
+    "bullet_points": [
+      "2条装设计，替换更方便",
+      "超低腰紧身版型，贴合日常穿着",
+      "网眼透气，轻薄速干更清爽",
+      "高叉三角设计，风格更利落",
+      "腰头字母装饰，整体偏运动感"
+    ],
+    "description": "这款男士内裤采用2条装配置，适合日常替换穿着。整体为低腰、超低腰与紧身版型，结合三角内裤和高叉设计，线条利落，风格偏性感。腰头加入字母装饰，整体更有运动感，适合偏好低腰、紧身款式的成年男性。\n\n面料表现上强调丝滑、轻薄与网眼透气，同时具备速干特性，穿着时更清爽，不容易有闷感。镂空元素也让整体视觉更轻快，适合喜欢简洁又带一点设计感的款式。\n\n无论是日常更换，还是偏好低腰性感风格的穿着需求，这款都能提供比较直接的选择。版型、透气感和2条装配置都比较明确，适合追求实用与风格并重的人群。"
+  },
+  "ordered_images": [
+    "output\\979560650567\\scenes\\站姿，正面面对镜头，双手自然垂放身体两侧，目视前方，展现商品正面结构.png",
+    "output\\979560650567\\scenes\\站姿，身体侧对镜头、微微转头看向镜头方向，展现商品侧面轮廓和腰头剪裁.png",
+    "output\\979560650567\\scenes\\背对镜头站立，头部侧转回望镜头，展现商品背面设计和腰线.png",
+    "output\\979560650567\\scenes\\坐在健身房长凳上，上身微微前倾，双手自然搭在膝盖两侧，目视前方.png",
+    "output\\979560650567\\scenes\\单膝跪地，另一只脚踩地支撑，一只手搭在抬起的膝盖上，侧身角度面对镜头.png",
+    "output\\979560650567\\scenes\\背对镜头、单膝跪地俯身调整鞋带的姿势，头部不转向镜头，展现商品背面.png",
+    "output\\979560650567\\graphics\\selling_points.png",
+    "output\\979560650567\\graphics\\description.png"
+  ],
+  "keywords": [
+    {
+      "term": "男士内裤",
+      "relevance": 100,
+      "note": "来自gender和类目通用词"
+    },
+    {
+      "term": "三角内裤",
+      "relevance": 98,
+      "note": "来自facts.features和类目"
+    },
+    {
+      "term": "低腰",
+      "relevance": 97,
+      "note": "来自facts.features和类目"
+    },
+    {
+      "term": "紧身",
+      "relevance": 96,
+      "note": "来自facts.style"
+    },
+    {
+      "term": "超低腰",
+      "relevance": 94,
+      "note": "来自facts.features"
+    },
+    {
+      "term": "2条装",
+      "relevance": 93,
+      "note": "来自facts.features"
+    },
+    {
+      "term": "网眼透气",
+      "relevance": 92,
+      "note": "来自facts.features"
+    },
+    {
+      "term": "轻薄",
+      "relevance": 90,
+      "note": "来自facts.features"
+    },
+    {
+      "term": "速干",
+      "relevance": 89,
+      "note": "来自facts.features"
+    },
+    {
+      "term": "高叉",
+      "relevance": 88,
+      "note": "来自facts.features"
+    },
+    {
+      "term": "性感",
+      "relevance": 86,
+      "note": "来自facts.features"
+    },
+    {
+      "term": "丝滑",
+      "relevance": 84,
+      "note": "来自facts.features"
+    },
+    {
+      "term": "镂空",
+      "relevance": 83,
+      "note": "来自facts.features"
+    },
+    {
+      "term": "运动感",
+      "relevance": 72,
+      "note": "来自卖点描述，腰头有字母装饰带来偏运动感"
+    },
+    {
+      "term": "字母装饰",
+      "relevance": 70,
+      "note": "来自卖点描述，腰头有字母装饰"
+    }
+  ],
+  "carousel_images": [
+    "output\\979560650567\\scenes\\站姿，正面面对镜头，双手自然垂放身体两侧，目视前方，展现商品正面结构.png",
+    "output\\979560650567\\scenes\\站姿，身体侧对镜头、微微转头看向镜头方向，展现商品侧面轮廓和腰头剪裁.png",
+    "output\\979560650567\\scenes\\背对镜头站立，头部侧转回望镜头，展现商品背面设计和腰线.png",
+    "output\\979560650567\\scenes\\坐在健身房长凳上，上身微微前倾，双手自然搭在膝盖两侧，目视前方.png",
+    "output\\979560650567\\scenes\\单膝跪地，另一只脚踩地支撑，一只手搭在抬起的膝盖上，侧身角度面对镜头.png",
+    "output\\979560650567\\scenes\\背对镜头、单膝跪地俯身调整鞋带的姿势，头部不转向镜头，展现商品背面.png",
+    "output\\979560650567\\graphics\\selling_points.png",
+    "output\\979560650567\\graphics\\description.png"
+  ],
+  "white_bg_image": "output\\979560650567\\scenes\\站姿，正面面对镜头，双手自然垂放身体两侧，目视前方，展现商品正面结构.png"
+}

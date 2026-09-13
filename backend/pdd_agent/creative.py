@@ -11,6 +11,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import os
 import zlib
 
@@ -20,53 +21,25 @@ from .models import GeneratedImage, ProductAnalysis, ProductData
 from .utils import download_file
 
 _NEGATIVE_PROMPT = (
-    "AI-generated look, synthetic/plastic/waxy skin, overly smooth skin with no visible pores or body hair, "
-    "uncanny-valley face, doll-like face, overly smooth or airbrushed skin, flat even studio lighting with no "
-    "shadow direction, oversaturated colors, low detail, blurry, deformed hands, extra fingers, distorted "
-    "logo, mismatched fabric pattern, gym equipment, furniture, props, background clutter, text artifacts, "
-    "watermark, low resolution, cartoon, illustration, 3D render, CGI, wide full-body shot, visible eyes, "
-    "visible full face."
+    "different person, identity drift, wrong viewing angle, head turning back, body twist, mirrored garment, "
+    "product front shown on the back, copied posing briefs from Picture 1, changed color, cut, logo, pattern, "
+    "or fabric, shirt, trousers, props, visible eyes, full face, forehead, calves, feet, wide shot, deformed "
+    "hands, extra fingers, plastic skin, blurred texture, watermark, text artifacts, cartoon, CGI"
 )
 
-_SCENE_PROMPT_TEMPLATE = """真实商业电商摄影棚拍风格，纯色摄影棚背景：{scene}。
-背景是干净的莫兰迪色系乳胶漆纯色背景墙（{background_color}），没有任何道具、器械、家具或其他场景元素，
-整组图（这个商品的所有场景）背景颜色必须保持完全一致，不要在不同场景之间换成别的颜色或质感。
-本次提供了两类参考图，第一张是人物身份参考图（代号：{persona_codename}）——画面里这个人的脸、五官、体型、肤质、
-胡茬都必须和这第一张参考图保持是同一个人，不能换成别的长相或体型；从第二张开始的参考图是本次要展示的商品本身。
-画面主体必须是商品参考图里的这件商品本身，颜色、剪裁、logo、图案、轮廓都要和商品参考图保持一致，不能改变产品设计，
-面料的纹理/针织图案/印花细节要严格按第二张开始的商品参考图临摹，不能凭空简化或改画成别的图案。
-这里最容易出的错是把第一张人物身份参考图上那条本来就穿着的基础款内裤，当成了要展示的商品——一定要认清商品参考图是从第二张开始，
-最终画面里的这条内裤，颜色/图案/logo/面料纹理必须去对照第二张开始的商品参考图，不能照抄第一张人物参考图里那条内裤的样子。
-商品的穿着方向/正反面必须和参考图完全一致，不能镜像、不能反穿、不能把正面的图案/logo/标签穿到背面去。
-不要凭空给人物添加参考图里没有的纹身、上衣、背心、绳索/器械道具等任何元素。
-这一点尤其要注意视角一致性：如果这个场景是从人物背后拍摄（能看到背部、后腰、臀部），那么画面里内裤呈现的必须是这件商品的背面设计——
-背面通常是素面、没有正面那种开口/门襟结构和明显的立体囊袋轮廓，不能出现"人物是背对镜头，但内裤却是正面开口结构朝着镜头"这种视角和商品部位对不上的错误；
-只有当场景是从正面或侧前方拍摄、能看到人物身前时，才展示商品参考图里那种正面结构。
-人物上半身赤裸，不穿任何上衣、外套、背心，下半身只穿参考图里的这条内裤（产品），不叠穿其他裤子。
-内裤裆部的凸起幅度要偏小、偏收敛，宁可比真实平均水平再小一点、更平坦一些，也不要显得鼓包、隆起或者刻意展示轮廓——
-裤型剪裁、松紧度必须和参考图一致，穿着状态是自然贴合、松量正常，不是刻意绷紧展示的夸张效果，构图也不要为了裆部特写而过度贴近镜头。
-面料要有随身体自然产生的细微垂坠感、褶皱和纹理阴影，不要是光滑无褶、像塑料模型一样的圆顶形状，褶皱的自然感来自面料物理特性，不是刻意做出的形状。
-商品上的品牌标签/logo不需要在每张图里都刻意露出——如果人物的动作姿态或拍摄角度自然遮挡了标签，遮住就遮住，不要为了让标签露出而扭曲产品剪裁、拉扯面料或摆出不合理的身体角度；
-面料的褶皱走向、缝合线位置要符合人体动作和面料在真实物理张力下呈现的自然包裹感，该在哪就在哪，不要为了展示某个细节而人为改变这些自然位置。
-这组图的核心目的是展示这条内裤本身（面料质感、剪裁版型、腰头细节），人物只是承载商品的载体，不是拍摄的主角——
-构图上要让内裤这个产品清晰、完整、光线充足地出现在画面里，是"产品照带一点人像感"，不是"人像写真带一件产品"。
-不要摆出刻意炫耀身材、挑逗或性张力暗示的姿势和表情（比如刻意绷紧鼓起肌肉对着镜头、挑眉、抿嘴这类姿态），
-人物的站姿应该是自然放松的状态，表情平静自然，不是在对镜头摆拍展示身材。
-{model_block}
-构图是近景半身构图：画面上边缘从人物鼻梁以下开始入画（不露眼睛、鼻梁、额头），画面下边缘截止在膝盖以上，
-不拍到小腿和脚，人物在画面里占比大、商品和上半身细节清晰可见，不是far shot那种能看到全身和大片背景的构图。
-人物{scene}，是自然放松的静态站姿，不是刻意摆拍造型。
-手部和手指的解剖结构必须正确、清晰、不模糊：每只手正常五根手指，形态自然，不要出现手指扭曲、多余或缺失手指、边缘模糊发虚这类AI生成瑕疵。
-柔和的摄影棚方向光（比如45度侧光），不要死板的正面平光，光影要有自然的方向性和明暗对比，皮肤和面料的纹理细节在这种光线下要清晰可辨；
-高级感，商业内衣广告摄影棚拍摄风格，不要出现除本商品外的其他品牌标识、文字水印、二维码。
-突出商品的{feature_hint}。"""
+_SCENE_PROMPT_TEMPLATE = """真实商业内衣商品摄影，人物{scene}。
+Picture 1 是人物身份和当前拍摄角度参考：保持代号 {persona_codename} 的同一张脸、体型、肤色、胡茬和身体比例，并严格保持该视角，头部与躯干不得反向转动。
+Picture 2 是商品参考：只把 Picture 1 的基础内裤替换为 Picture 2 的商品，准确保留颜色、剪裁、腰头、logo、图案、缝线和面料纹理，不能照抄 Picture 1 的内裤。
+正面和侧面展示商品对应方向；背面镜头只展示商品背面，不得出现正面门襟、开口或囊袋结构。人物上半身赤裸，下半身只穿该商品，站姿自然放松，不添加道具或其它服装。
+使用干净的 {background_color} 莫兰迪纯色摄影棚背景，柔和 45 度方向光，真实皮肤、体毛、手部和面料褶皱。
+最终商品图固定为鼻梁位置至膝盖以上的近景裁切，不露眼睛、额头、小腿和脚；商品完整、清晰、光线充足，重点展示{feature_hint}。"""
 
 # 2026-08-18 按反馈从"健身房场景"完全改成纯色摄影棚背景，只保留人物三个朝向（正面/侧面/背面），
 # 不再需要具体姿势/器械互动的场景描述。
-_STUDIO_POSE_SCENES: list[str] = [
-    "正面面对镜头，双手自然垂放身体两侧，目视前方，展现商品正面结构",
-    "身体侧对镜头、微微转头看向镜头方向，展现商品侧面轮廓和腰头剪裁",
-    "背对镜头站立，头部侧转回望镜头，展现商品背面设计和腰线",
+_STUDIO_POSE_SCENES: list[tuple[str, str]] = [
+    ("正面面对镜头，头部与躯干均朝正面，双手自然垂放身体两侧", "FRONT_000"),
+    ("左侧面面对镜头，头部与躯干均保持左侧面，双手自然垂放身体两侧", "LEFT_090"),
+    ("背面面对镜头，头部与躯干均朝向背面，双手自然垂放身体两侧", "BACK_180"),
 ]
 
 # 每个商品的三张场景图背景色要保持统一，但不同商品之间可以不一样——用 goods_id 做稳定哈希，
@@ -79,6 +52,21 @@ _MORANDI_BACKGROUNDS: list[str] = [
     "浅灰紫色，muted lavender-grey",
     "浅可可棕灰色，soft mocha grey-brown",
 ]
+
+
+def _scene_output_filename(
+    codename: str, persona_ref_path: str, scene: str,
+    product_ref_path: str | None = None, prompt: str = "",
+) -> str:
+    reference = os.path.splitext(os.path.basename(persona_ref_path))[0]
+    version = hashlib.sha256(prompt.encode("utf-8"))
+    with open(persona_ref_path, "rb") as f:
+        version.update(f.read())
+    if product_ref_path:
+        with open(product_ref_path, "rb") as f:
+            version.update(f.read())
+    identity_version = version.hexdigest()[:12]
+    return f"{codename}_{reference}_{identity_version}_{scene}.png".replace("/", "_")
 
 
 def _background_color(goods_id: str) -> str:
@@ -160,6 +148,11 @@ def generate_scene_images(
     settings: Settings,
     output_dir: str,
 ) -> list[GeneratedImage]:
+    comfy_client.validate_reference_models(settings)
+    persona_refs = {
+        view_id: personas.persona_reference_path(settings.persona_codename, view_id)
+        for _, view_id in _STUDIO_POSE_SCENES
+    }
     reference_urls = _pick_reference_images(product)
     if not reference_urls:
         raise RuntimeError(
@@ -174,25 +167,29 @@ def generate_scene_images(
     ]
 
     feature_hint = "、".join(analysis.selling_points[:2]) or "细节质感"
-    model_block = _model_block(analysis)
     background_color = _background_color(product.source_goods_id)
-    persona_ref_path = personas.get_or_create_persona(settings.persona_codename, model_block, settings)
     product_ref_path = product_ref_paths[0]
 
     results: list[GeneratedImage] = []
     scenes_dir = os.path.join(output_dir, "scenes")
     os.makedirs(scenes_dir, exist_ok=True)
 
-    for scene in _STUDIO_POSE_SCENES:
-        out_path = os.path.join(scenes_dir, f"{scene}.png".replace("/", "_"))
+    for scene, view_id in _STUDIO_POSE_SCENES:
+        persona_ref_path = persona_refs[view_id]
         prompt = _SCENE_PROMPT_TEMPLATE.format(
             scene=scene,
             feature_hint=feature_hint,
-            model_block=model_block,
             persona_codename=settings.persona_codename,
             background_color=background_color,
         )
-
+        out_path = os.path.join(
+            scenes_dir,
+            _scene_output_filename(
+                settings.persona_codename, persona_ref_path, scene, product_ref_path,
+                prompt + _NEGATIVE_PROMPT + settings.comfy_qwen_unet_name
+                + settings.comfy_qwen_clip_name + settings.comfy_qwen_vae_name,
+            ),
+        )
         # 复跑时跳过已经成功生成过的场景，只补生成之前失败/缺失的那几个——文件存在就等价于
         # 这个场景已经成功过，不用额外记状态（跟原来 gpt-image 版本的逻辑一致）。
         if os.path.exists(out_path) and os.path.getsize(out_path) > 0:

@@ -1,0 +1,15 @@
+# Local secrets and reproducible runtime artifacts
+.env
+.env.*
+!.env.example
+cookies.txt
+merchant_cookies.txt
+pdd_login_state.json
+*.pem
+*.key
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.test_tmp/
+.test-tmp/
